@@ -9,6 +9,15 @@
  * @version 1.0
  * description：
  */
+import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.table.*;
+import java.awt.*;
+import java.io.File;
+import javax.swing.filechooser.*;
 public class TableCellEditorTest
 {
 	JFrame jf = new JFrame("使用单元格编辑器");
@@ -156,7 +165,7 @@ class ImageCellEditor extends DefaultCellEditor
 		if (result == JFileChooser.CANCEL_OPTION)
 		{
 			//取消编辑
-			super.cacelCellEditing();
+			super.cancelCellEditing();
 			return ;
 		}
 		//如果单击了文件选择器的“确定”按钮
@@ -175,4 +184,16 @@ class Utils
 	public final static String tiff = "tiff";
 	public final static String tif = "tif";
 	public final static String png = "png";
+	//获取文件扩展名的方法
+	public static String getExtension(File f)
+	{
+		String ext = null;
+		String s = f.getName();
+		int i = s.lastIndexOf('.');
+		if (i > 0 && i < s.length() - 1)
+		{
+			ext = s.substring(i + 1).toLowerCase();
+		}
+		return ext;
+	}
 }
